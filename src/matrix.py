@@ -1,17 +1,17 @@
-import sys
-sys.path.append('../')
-
 class Matrix:
+
 	def __init__(self,elements): # elements
 		self.elements = elements
 		self.column = len(self.elements[0])
 		self.row = len(self.elements)
         
 	def print(self):
+
 		for item in self.elements:
 			print(item)
         
 	def transpose(self):
+
 		final_array = []
 		for a in range(0,2):
 			new_array = []
@@ -21,6 +21,7 @@ class Matrix:
 		return Matrix(final_array)
 
 	def add(self, elements2):
+
 		final_array = []
 		for item in range(0,2):
 			new_array = []
@@ -30,24 +31,28 @@ class Matrix:
 		return Matrix(final_array)
 
 	def scalar(self,scalar):
+
 		final_array = []
 		for item in self.elements:
 			new_array = []
 			for a in range(0,2):
-				new_array.append(scalar *item[a])
+				new_array.append(scalar * item[a])
 			final_array.append(new_array)
 		return Matrix(final_array)
 
 	def dot_product(self,vector1,vector2):
-		return vector1[0] * vector2[0] + vector1[1] *vector2[1]
+
+		return vector1[0] * vector2[0] + vector1[1] * vector2[1]
 
 	def col_to_row(self,matrix,position):
+
 		row = []
 		for item in range(0,2):
 			row.append(matrix[item][position])
 		return row
 	
 	def matrix_multiplication(self,matrix2):
+
 		final_array = []
 		for row in range(0,2):
 			new_array = []
@@ -59,8 +64,6 @@ class Matrix:
 
 
 
-        
-        
 a = Matrix([[1,2],[3,4]])
 #a.print()
 

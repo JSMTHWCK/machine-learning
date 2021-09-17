@@ -25,9 +25,9 @@ class Matrix:
 			print("matricies are of unequal dimensions")
 			return
 		final_array = []
-		for item in range(0,2):
+		for item in range(0,self.row):
 			new_array = []
-			for a in range(0,2):
+			for a in range(0,self.column):
 				new_array.append(self.elements[item][a] + elements2[item][a])
 			final_array.append(new_array)
 		return Matrix(final_array)
@@ -37,7 +37,7 @@ class Matrix:
 		final_array = []
 		for item in self.elements:
 			new_array = []
-			for a in range(0,2):
+			for a in range(0,self.column):
 				new_array.append(scalar * item[a])
 			final_array.append(new_array)
 		return Matrix(final_array)
@@ -66,6 +66,7 @@ class Matrix:
 
 
 
-a = Matrix([[1,2],[3,4]])
+a = Matrix([[3,10,24],[3,10,24]])
 #a.print()
-a.add([[3,10,24],[24,13,5]])
+a.add([[3,10,24],[24,13,5]]).print()
+a.scalar(3).print()

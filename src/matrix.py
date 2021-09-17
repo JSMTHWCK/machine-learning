@@ -21,7 +21,9 @@ class Matrix:
 		return Matrix(final_array)
 
 	def add(self, elements2):
-
+		if self.row != len(elements2) or self.column !=len(elements2[0]):
+			print("matricies are of unequal dimensions")
+			return
 		final_array = []
 		for item in range(0,2):
 			new_array = []
@@ -66,9 +68,4 @@ class Matrix:
 
 a = Matrix([[1,2],[3,4]])
 #a.print()
-
-a.transpose().print()
-a.scalar(3).print()
-a.add([[1,2],[3,4]]).print()
-print('')
-a.matrix_multiplication([[1,2],[3,4]]).print()
+a.add([[3,10,24],[24,13,5]])

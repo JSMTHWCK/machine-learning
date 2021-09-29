@@ -10,3 +10,4 @@ a.transpose().print()
 a.scalar(3).print()
 a.add([[1,2],[3,4]]).print()
 a.matrix_multiplication([[1,2],[3,4]])
+

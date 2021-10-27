@@ -285,5 +285,3 @@ b.rowadd(0,1,1).print()
 b.rowscale(0,3).print()
 print("")
 '''
-b.determinant()
-print(b.recursive_det())

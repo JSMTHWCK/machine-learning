@@ -35,6 +35,3 @@ a = LogisticRegressor()
 data = [[0,1],[1,1],[2,1]]
 data2 = [[3,0.75],[2,0.5],[1,0.1]]
 
-a.fit(data2)
-print(a.coefficients)
-print(a.predict(3.5))

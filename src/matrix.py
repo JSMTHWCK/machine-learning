@@ -233,7 +233,7 @@ class Matrix:
 			if matrix_copy.elements != matrix_copy.rowswitch(i,self.getfirstpivot(i)).elements:
 				rowswaps.append(1)
 			matrix_copy = matrix_copy.rowswitch(i,self.getfirstpivot(i))
-			scalars.append(1/matrix_copy.elements[i][i])
+			scalars.append(matrix_copy.elements[i][i])
 			matrix_copy = matrix_copy.rowscale(i,1/matrix_copy.elements[i][i])
 			for a in range(0,matrix_copy.numrows):
 				if a == i:
@@ -283,4 +283,4 @@ b.rowscale(0,3).print()
 print("")
 '''
 b.determinant()
-print(b.det())
+print(b.recursive_det())

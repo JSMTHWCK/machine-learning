@@ -260,7 +260,10 @@ class Matrix:
 		#print(matrix_copy.elements)
 		return matrix_copy
 
-
+def roundarray(input,accuracy):
+	for a in range(0,len(input)):
+		input[a] = round(input[a],accuracy)
+	return input
 
 a = Matrix([[3,10],[3,10]])
 b = Matrix([[3,10,11],[0,2,3],[1,2,3]])

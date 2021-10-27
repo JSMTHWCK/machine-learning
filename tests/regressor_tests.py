@@ -4,6 +4,7 @@ sys.path.append('src')
 import math
 from linearRegressor import LinearRegressor
 from logisticRegressor import LogisticRegressor
+from matrix import Matrix
 
 a = LinearRegressor()
 
@@ -13,7 +14,11 @@ data3 = [[7,3],[11,5],[2,6]]
 data4 =  [[12,5],[7,4],[12,5]]
 
 a.fit(data2)
-print(a.coefficients)
-
+if roundarray(a.coefficients,3 != [1.16,0.18]):
+	print("coefficients are wrong at ",a.coefficients)
+	print(a.coefficients)
+elif math.isclose(a.predict(7),8.25,abs_tol = 0.01)!= True:
+	print("predict is wrong")
+	print(a.predict(7))
 #if math.isclose(math.sqrt(3), rhapson(3,2,5), abs_tol = 0.00001) != True:
 	#print('rhapson failed on input "3**1/2"')

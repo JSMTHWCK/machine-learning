@@ -1,0 +1,9 @@
+queue = [starting node]
+visited = {starting node: True}
+order = []
+
+while queue is not empty:
+    take the next node from the queue (removing it from the queue)
+    for each child of node:
+        if child has not been visited:
+            add child to order and queue, and record the visit

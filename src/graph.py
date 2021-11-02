@@ -18,16 +18,20 @@ class Graph:
 		return empty_array
 	def bfs(self):
 		queue = [self.parents[0]]
-		visited = {self.parents[0]:True}
-		order = [self.parents[0]]
+		visited = {}
+		order = []
 		while len(queue) != 0:
-			for item in self.get_children(queue[0]):
-				queue.append(item)			
-			queue.pop(0)
+			queue_copy = queue
 			for item in queue:
 				if item not in visited:
-					queue[item] = True
+					visited[str(item)] = True
 					order.append(item)
+					for item in self.get_children(queue[0]):
+						queue.append(item)			
+				queue.pop(0)
+
+					
+
 		return order
 
 

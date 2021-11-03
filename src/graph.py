@@ -24,10 +24,7 @@ class Graph:
 			queue_copy = queue
 			for item in queue:
 				if item not in visited:
-<<<<<<< HEAD
 					#the problem is it makes it an unlisted index (so basically it tries to find index 9 not #9)
-=======
->>>>>>> c1691784605b3535675f55d651e376004355d7ff
 					visited[str(item)] = True
 					order.append(item)
 					for item in self.get_children(queue[0]):

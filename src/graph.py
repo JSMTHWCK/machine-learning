@@ -26,13 +26,14 @@ class Graph:
 			queue.pop(0)
 			for item in queue:
 				if item not in visited:
-					queue[item] = True
+					#the problem is it makes it an unlisted index (so basically it tries to find index 9 not #9)
+					visited[str(item)] = True
 					order.append(item)
 		return order
 
 
 graph = Graph([[2,8],[9,3],[1,5],[9,6],[9,6],[6,9],[4,5],[10,6],[3,10],[8,7],[8,5],[6,2],[8,10],[6,1],[6,4]])
-
+graph2 = Graph([[1,2],[2,4],[2,3],[3,6],[3,5]])
 print(graph.get_parents(6))
 print(graph.bfs())
 

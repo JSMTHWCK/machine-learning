@@ -240,13 +240,12 @@ class Matrix:
 					continue
 				else:
 					matrix_copy = matrix_copy.rowadd(a,i,-1 * matrix_copy.elements[a][i])
-		print(scalars)
-		print(rowswaps)
+
 		final = 1
 		for item in scalars:
 			final = final * item
 		final = (-1)**len(rowswaps) * final
-		print(final)
+		return final
 
 	def inverse(self):
 		if self.numcols != self.numrows or self.det() == 0:

@@ -18,17 +18,24 @@ class Graph:
 		return empty_array
 	def bfs(self):
 		queue = [self.parents[0]]
-		visited = {self.parents[0]:True}
-		order = [self.parents[0]]
+		visited = {}
+		order = []
 		while len(queue) != 0:
-			for item in self.get_children(queue[0]):
-				queue.append(item)			
-			queue.pop(0)
+			queue_copy = queue
 			for item in queue:
 				if item not in visited:
+<<<<<<< HEAD
 					#the problem is it makes it an unlisted index (so basically it tries to find index 9 not #9)
+=======
+>>>>>>> c1691784605b3535675f55d651e376004355d7ff
 					visited[str(item)] = True
 					order.append(item)
+					for item in self.get_children(queue[0]):
+						queue.append(item)			
+				queue.pop(0)
+
+					
+
 		return order
 
 

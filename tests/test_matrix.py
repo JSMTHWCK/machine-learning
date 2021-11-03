@@ -12,7 +12,7 @@ b = Matrix([[14,8,3,3,14],[7,7,21,5,8],[22,18,3,10,22],[24,11,5,18,11],[21,19,25
 c = Matrix([[20,6,24,23,14],[25,7,22,13,4],[15,4,4,18,17],[8,25,9,14,19],[6,11,1,22,10]])
 d = Matrix([[2,22,7,1,5],[15,20,5,19,4],[17,8,24,23,13],[3,13,5,4,1],[6,19,19,6,17]])
 
-a.determinant() #the magnificant 10x10
+print(a.determinant()) #the magnificant 10x10
 if math.isclose(b.determinant(),323555,abs_tol = 1) != True:
     print("determinant failed on ", b.elements)
     print(b.determinant())

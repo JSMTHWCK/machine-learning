@@ -20,15 +20,15 @@ class Graph:
 		queue = [self.parents[0]]
 		visited = {}
 		order = []
+
 		while len(queue) != 0:
-			queue_copy = queue
-			for item in queue:
-				if item not in visited:
-					visited[str(item)] = True
-					order.append(item)
-					for item in self.get_children(queue[0]):
-						queue.append(item)			
-				queue.pop(0)
+			item = queue[0]
+			if str(item) not in visited:
+				visited[str(item)] = True
+				order.append(item)
+				for item in self.get_children(queue[0]):
+					queue.append(item)			
+			queue.pop(0)
 
 					
 

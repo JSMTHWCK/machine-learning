@@ -30,10 +30,24 @@ class Graph:
 					queue.append(item)			
 			queue.pop(0)
 
-					
+		return order
+
+	def dfs(self):
+		queue = [self.parents[0]]
+		visited = {}
+		order = []
+
+		while len(queue) != 0:
+			item = queue[0]
+			queue.pop(0)
+			if str(item) not in visited:
+				visited[str(item)] = True
+				order.append(item)
+				for a in self.get_children(item):
+					queue.insert(0,a)
 
 		return order
 
 
-
-
+graph = Graph([[2,8],[9,3],[1,5],[9,6],[9,6],[6,9],[4,5],[10,6],[3,10],[8,7],[8,5],[6,2],[8,10],[6,1],[6,4]])
+print(graph.dfs())

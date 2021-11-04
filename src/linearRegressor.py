@@ -11,7 +11,7 @@ class LinearRegressor():
 		#correct
 
 		#right_copy
-		m_b = [[point[0:n-2]] for point in data]
+		m_b = [point[0:n-1] for point in data]
 		for item in range(0,len(m_b)):
 			m_b[item].append(1)
 		data_matrix = Matrix(m_b)	
@@ -43,12 +43,13 @@ class LinearRegressor():
 			self.coefficients.append(right_side.elements[i][0])
 		#print('coefficients 1:', self.coefficients)
 
-	def predict(self,x):
-		
-		return self.coefficients[0] * x + self.coefficients[1]
+	def predict(self,values):
+		total = 0
+		if len(values) + 1 != len(self.coefficients):
+			print("number of variables aren't consistant")
+			return
+		for i in range(0,len(values)):
+			total += self.coefficients[i] * values[i]
+		total +=  self.coefficients[-1]
+		return total
 
-
-data2 = [[5,2],[8,11],[3,6]]
-a = LinearRegressor()
-a.fit(data2)
-a.print(self.coefficients)

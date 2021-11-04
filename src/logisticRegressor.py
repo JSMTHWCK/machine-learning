@@ -6,10 +6,10 @@ class LogisticRegressor():
 
 	def fit(self, data):
 		#right side
-		right = [[math.log(1/point[1] - 1)] for point in data]
+		right = [[math.log(1/point[-1] - 1)] for point in data]
 		right = Matrix(right)
 		#left side
-		left = [[point[0]] for point in data]
+		left = [point[:-1] for point in data]
 
 		for i in range(0,len(left)):
 			left[i].append(1)
@@ -25,13 +25,22 @@ class LogisticRegressor():
 		right_side = left_side.matrix_multiplication(right_side)
 		#print(right_side.elements)
 		self.coefficients = []
-		self.coefficients.append(right_side.elements[1][0])
-		self.coefficients.append(right_side.elements[0][0])
-	def predict(self,x):
-		return 1/(1 + math.e ** ((self.coefficients[1] * x) + self.coefficients[0]))
+		for i in range(right_side.numrows):
+			self.coefficients.append(right_side.elements[i][0])
+
+
+	def predict(self,values):
+		powertotal = 0
+		if len(values) + 1 != len(self.coefficients):
+			print("number of variables aren't consistant")
+			return
+		for i in range(0,len(values)):
+			powertotal += self.coefficients[i] * values[i]
+		powertotal +=  self.coefficients[-1]
+		return 1/(1 + math.e ** (powertotal))
 
 
 a = LogisticRegressor()
 data = [[0,1],[1,1],[2,1]]
 data2 = [[3,0.75],[2,0.5],[1,0.1]]
-
+a.fit(data2)

@@ -1,9 +1,6 @@
-queue = [starting node]
-visited = {starting node: True}
-order = []
-
-while queue is not empty:
-    take the next node from the queue (removing it from the queue)
-    for each child of node:
-        if child has not been visited:
-            add child to order and queue, and record the visit
+for the linearRegressor fit
+    instead of taking point[1] you need to take last one
+    instead of taking m_b[0], take m_b of 0:n-1
+    number of input in fit (in an array) = number of columns - 1
+    remember this is a best fit line, doesn't have to be 2d
+    

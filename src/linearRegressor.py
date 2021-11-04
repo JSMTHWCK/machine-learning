@@ -3,14 +3,15 @@ from matrix import Matrix
 class LinearRegressor():
 
 	def fit(self, data):
-		rows = [[point[1]] for point in data]
+		n = len(data[0])
+		rows = [[point[n-1]] for point in data]
 		#left side
 		y_matrix = Matrix(rows)
 		#print("the matrix of y is ", y_matrix.elements)
 		#correct
 
 		#right_copy
-		m_b = [[point[0]] for point in data]
+		m_b = [[point[0:n-2]] for point in data]
 		for item in range(0,len(m_b)):
 			m_b[item].append(1)
 		data_matrix = Matrix(m_b)	
@@ -42,8 +43,12 @@ class LinearRegressor():
 			self.coefficients.append(right_side.elements[i][0])
 		#print('coefficients 1:', self.coefficients)
 
-	def predict(self, x):
+	def predict(self,x):
 		
 		return self.coefficients[0] * x + self.coefficients[1]
 
 
+data2 = [[5,2],[8,11],[3,6]]
+a = LinearRegressor()
+a.fit(data2)
+a.print(self.coefficients)

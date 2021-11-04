@@ -52,8 +52,3 @@ class LinearRegressor():
 		total +=  self.coefficients[-1]
 		return total
 
-data2 = [[5,2,3],[8,11,3],[3,6,3],[11,5,2],[4,6,7],[22,3,9]]
-a = LinearRegressor()
-a.fit(data2)
-print(a.coefficients)
-print(a.predict([1,2]))

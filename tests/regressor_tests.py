@@ -27,7 +27,7 @@ elif math.isclose(a.predict([7]),4.62,abs_tol = 0.1)!= True:
 	print(a.predict([7]))
 a = LogisticRegressor()
 a.fit(data4)
-if roundarray(a.coefficients,3) != [3.662,-1.648]:
+if roundarray(a.coefficients,3) != [-1.648,3.662]:
 	print("coefficients are wrong at ", a.coefficients)
-elif math.isclose(a.predict(7),7.07,abs_tol = 0.1):
-	print("predict is wrong at ")
+elif math.isclose(a.predict([7]),7.07,abs_tol = 0.1):
+	print("predict is wrong")

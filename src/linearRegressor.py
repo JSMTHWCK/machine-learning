@@ -47,6 +47,7 @@ class LinearRegressor():
 		total = 0
 		if len(values) + 1 != len(self.coefficients):
 			print("number of variables aren't consistant")
+			return
 		for i in range(0,len(values)):
 			total += self.coefficients[i] * values[i]
 		total +=  self.coefficients[-1]

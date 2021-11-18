@@ -44,8 +44,10 @@ class linearSandwich():
 
 
 a = linearSandwich()
-data = [[0, 0, 1], [1, 0, 2], [2, 0, 4], [4, 0, 8], [6, 0, 9], [0, 2, 2], [0, 4, 5], [0, 6, 7], [0, 8, 6], [2, 2, 1], [3, 4, 1]]
+data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
 a.fit(data)
 print(a.coefficients)
 print(a.predict([5,0]))
 print(a.predict([5,5]))
+
+#the problem? we don't have data on a mixture, so when predicting a mixture, it would most likely be wrong.

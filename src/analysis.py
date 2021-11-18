@@ -29,25 +29,22 @@ class linearSandwich():
 			self.coefficients.append(right_side.elements[i][0])
 
 	def predict(self,values):
-		total = 0 
-		index = 0
-		for a in range(1,len(values)):
-			for b in range(1,len(values)):
-				if a==b:
-					total += self.coefficients[a] * values[a]
-				elif b>a:
-					total += self.coefficients[index] * values[a]*values[b]
-				index += 1
-		total += self.coefficients[0]
-		
+		total = 0
+		if len(values) + 1 != len(self.coefficients):
+			print("number of variables aren't consistant")
+			return
+		for i in range(0,len(values)):
+			total += self.coefficients[i] * values[i]
+		total +=  self.coefficients[-1]
 		return total
 
 
-a = linearSandwich()
-data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
-a.fit(data)
-print(a.coefficients)
-print(a.predict([5,0]))
-print(a.predict([5,5]))
 
-#the problem? we don't have data on a mixture, so when predicting a mixture, it would most likely be wrong.
+a = linearSandwich()
+data_0 = [[0, 0, 1], [1, 0, 2], [2, 0, 4], [4, 0, 8], [6, 0, 9], [0, 2, 2], [0, 4, 5], [0, 6, 7], [0, 8, 6]]
+data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
+a.fit(data_0)
+
+sandwich = open("./tests/hotdog_test.txt","w")
+sandwich.write("input of [5,0] gives {} \n".format(a.predict([5,0])))
+sandwich.write("input of [5,5] gives {} \n".format(a.predict([5,5])))

@@ -27,7 +27,7 @@ class Graph:
 				visited[str(item)] = True
 				order.append(item)
 				for item in self.get_children(queue[0]):
-					queue.append(item)			
+					queue.append(item)
 			queue.pop(0)
 
 		return order

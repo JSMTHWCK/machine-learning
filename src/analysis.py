@@ -1,8 +1,7 @@
 from matrix import Matrix
 
 class linearSandwich():
-#just copied from linearRegressor
-	def fit(self, data):
+	def fit(self, data,interaction_terms=False):
 		n = len(data[0])
 		rows = [[point[n-1]] for point in data]
 
@@ -12,6 +11,8 @@ class linearSandwich():
 
 		m_b = [point[0:n-1] for point in data]
 		for item in range(0,len(m_b)):
+			if interaction_terms == True:
+				m_b[item].append(m_b[item][0] *m_b[item][1])
 			m_b[item].append(1)
 		data_matrix = Matrix(m_b)	
 		
@@ -37,8 +38,13 @@ class linearSandwich():
 		total +=  self.coefficients[-1]
 		return total
 
+
+
 a = linearSandwich()
-data = [[0, 0, 1], [1, 0, 2], [2, 0, 4], [4, 0, 8], [6, 0, 9], [0, 2, 2], [0, 4, 5], [0, 6, 7], [0, 8, 6], [2, 2, 1], [3, 4, 1]]
-a.fit(data)
-print(a.predict([5,0]))
-print(a.predict([5,5]))
+data_0 = [[0, 0, 1], [1, 0, 2], [2, 0, 4], [4, 0, 8], [6, 0, 9], [0, 2, 2], [0, 4, 5], [0, 6, 7], [0, 8, 6]]
+data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
+a.fit(data_0)
+
+sandwich = open("./tests/hotdog_test.txt","w")
+sandwich.write("input of [5,0] gives {} \n".format(a.predict([5,0])))
+sandwich.write("input of [5,5] gives {} \n".format(a.predict([5,5])))

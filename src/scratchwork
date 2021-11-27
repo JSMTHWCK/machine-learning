@@ -1,6 +1,0 @@
-for the linearRegressor fit
-    instead of taking point[1] you need to take last one
-    instead of taking m_b[0], take m_b of 0:n-1
-    number of input in fit (in an array) = number of columns - 1
-    remember this is a best fit line, doesn't have to be 2d
-    

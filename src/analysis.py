@@ -12,7 +12,10 @@ class linearSandwich():
 		m_b = [point[0:n-1] for point in data]
 		for item in range(0,len(m_b)):
 			if interaction_terms == True:
-				m_b[item].append(m_b[item][0] *m_b[item][1])
+				for x in range(1,len(data[item])):
+					for y in range(2,len(data[item])):
+						if y > x:
+							m_b[item].append(data[item][y] * data[item][x])				
 			m_b[item].append(1)
 		data_matrix = Matrix(m_b)	
 		
@@ -38,14 +41,14 @@ class linearSandwich():
 				elif b>a:
 					total += self.coefficients[index] * values[a]*values[b]
 				index += 1
-		total += self.coefficients[0]
+		total += self.coefficients[-1]
 		
 		return total
 
 
 a = linearSandwich()
 data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
-a.fit(data)
+a.fit(data,True)
 print(a.coefficients)
 print(a.predict([5,0]))
 print(a.predict([5,5]))

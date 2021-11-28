@@ -1,17 +1,26 @@
 from matrix import Matrix
 
-class LinearRegressor():
+class LinearSandwich():
 
-	def fit(self, data):
+	def fit(self, data,interaction_terms = False):
+
 		self.coefficients = []
 
-		n = len(data[0])
-		rows = [[point[n-1]] for point in data]
+		rows = [[point[-1]] for point in data]
 
 		y_matrix = Matrix(rows)
 
-		m_b = [point[0:n-1] for point in data]
+		m_b = [point[0:-1] for point in data]
+		m_b_copy = m_b
+		x = len(m_b_copy[0])
 		for item in range(0,len(m_b)):
+			#construction starts here
+			if interaction_terms == True:
+				for a in range(0,x):
+					for b in range(0,x):
+						if b>a:
+							m_b[item].append(m_b[item][a] * m_b[item][b])
+				#construction ends here
 			m_b[item].append(1)
 		data_matrix = Matrix(m_b)	
 
@@ -35,8 +44,11 @@ class LinearRegressor():
 
 #elias your names are something else
 pain = [[0, 0, 1], [1, 0, 2], [2, 0, 4], [4, 0, 8], [6, 0, 9], [0, 2, 2], [0, 4, 5], [0, 6, 7], [0, 8, 6]]
-a = LinearRegressor()
-a.fit(pain)
-doc = open("./tests/hotdog_test.txt", "w")
+data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
+a = LinearSandwich()
+
+a.fit(data,True)
+print(a.coefficients)
+doc = open("../tests/hotdog_test.txt", "w")
 doc.write("5 rb + 0 pb =  " + str(a.predict([5, 0])) + "\n")
 doc.write("5 rb + 5 pb =  " + str(a.predict([5, 5])))

@@ -29,15 +29,20 @@ class LogisticRegressor():
 			self.coefficients.append(right_side.elements[i][0])
 
 
-	def predict(self,values):
-		powertotal = 0
-		if len(values) + 1 != len(self.coefficients):
-			print("number of variables aren't consistant")
-			return
+	def predict(self,values,minbound,maxbound):
+		total = 0
+		copyfficients = self.coefficients.copy()
 		for i in range(0,len(values)):
-			powertotal += self.coefficients[i] * values[i]
-		powertotal +=  self.coefficients[-1]
-		return 1/(1 + math.e ** (powertotal))
+			total += self.coefficients[i] * values[i]
+			copyfficients.pop(0)
+		total +=  self.coefficients[-1]
+
+		for a in range(0,len(values)):
+			for b in range(0,len(values)):
+				if b>a : 
+					total += values[a] * values[b] * copyfficients[0]
+					copyfficients.pop(0)
+		return minbound + (maxbound - minbound)/(1 + math.e ** (powertotal))
 
 
 a = LogisticRegressor()

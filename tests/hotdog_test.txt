@@ -1,2 +1,2 @@
-input of [5,0] gives 8.259740259740257 
-input of [5,5] gives 12.051948051948045 
+input of [5,0] gives 1.1493506493506498 
+input of [5,5] gives 4.941558441558438 

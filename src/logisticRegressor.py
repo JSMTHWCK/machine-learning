@@ -4,14 +4,21 @@ import math
 
 class LogisticRegressor():
 
-	def fit(self, data):
+	def fit(self, data,interaction_terms = False):
 		#right side
 		right = [[math.log(1/point[-1] - 1)] for point in data]
 		right = Matrix(right)
 		#left side
 		left = [point[:-1] for point in data]
-
+		left_copy = left.copy()
+		x = len(left_copy[0])
 		for i in range(0,len(left)):
+			#construction starts here
+			if interaction_terms == True:
+				for a in range(0,x):
+					for b in range(0,x):
+						if b>a:
+							left[i].append(left[i][a] * left[i][b])
 			left[i].append(1)
 		left = Matrix(left)
 		transposed = left.transpose()
@@ -47,5 +54,8 @@ class LogisticRegressor():
 
 a = LogisticRegressor()
 data = [[0,1],[1,1],[2,1]]
-data2 = [[3,0.75],[2,0.5],[1,0.1]]
-a.fit(data2)
+data2 = [[4,0.9,0.45],[3,0.75,0.65],[2,0.5,0.2],[1,0.1,0.5]]
+
+
+a.fit(data2,True)
+print(a.coefficients)

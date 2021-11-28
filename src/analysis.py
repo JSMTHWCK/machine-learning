@@ -36,10 +36,19 @@ class LinearSandwich():
 			self.coefficients.append(right_side.elements[i][0])
 
 	def predict(self,values):
+		print(self.coefficients)
 		total = 0
+		copyfficients = self.coefficients.copy()
 		for i in range(0,len(values)):
 			total += self.coefficients[i] * values[i]
+			copyfficients.pop(0)
 		total +=  self.coefficients[-1]
+
+		for a in range(0,len(values)):
+			for b in range(0,len(values)):
+				if b>a : 
+					total += values[a] * values[b] * copyfficients[0]
+					copyfficients.pop(0)
 		return total
 
 #elias your names are something else
@@ -48,7 +57,6 @@ data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],
 a = LinearSandwich()
 
 a.fit(data,True)
-print(a.coefficients)
 doc = open("../tests/hotdog_test.txt", "w")
 doc.write("5 rb + 0 pb =  " + str(a.predict([5, 0])) + "\n")
 doc.write("5 rb + 5 pb =  " + str(a.predict([5, 5])))

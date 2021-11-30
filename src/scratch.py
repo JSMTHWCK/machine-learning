@@ -1,9 +1,3 @@
-x = 5
-list = []
-for a in range(0,x):
-	for b in range(0,x):
-		if b > a:
-			list.append(str(a) + str(b))
-
-
-print(list)
+a = {0:"a",1:"b",2:"c",3:"d",4:"e"}
+a[0],a[2],a[3] = a[3],a[2],a[0]
+print(a[0])

@@ -36,7 +36,6 @@ class LinearSandwich():
 			self.coefficients.append(right_side.elements[i][0])
 
 	def predict(self,values):
-		print(self.coefficients)
 		total = 0
 		copyfficients = self.coefficients.copy()
 		for i in range(0,len(values)):
@@ -54,9 +53,9 @@ class LinearSandwich():
 #elias your names are something else
 pain = [[0, 0, 1], [1, 0, 2], [2, 0, 4], [4, 0, 8], [6, 0, 9], [0, 2, 2], [0, 4, 5], [0, 6, 7], [0, 8, 6]]
 data = [[0,0,1],[1,0,2],[2,0,4],[4,0,8],[6,0,9],[0,2,2],[0,4,5],[0,6,7],[0,8,6],[2,2,1],[3,4,1]]
-a = LinearSandwich()
+#a = LinearSandwich()
 
-a.fit(data,True)
-doc = open("../tests/hotdog_test.txt", "w")
-doc.write("5 rb + 0 pb =  " + str(a.predict([5, 0])) + "\n")
-doc.write("5 rb + 5 pb =  " + str(a.predict([5, 5])))
+#a.fit(data,True)
+#doc = open("../tests/hotdog_test.txt", "w")
+#doc.write("5 rb + 0 pb =  " + str(a.predict([5, 0])) + "\n")
+#doc.write("5 rb + 5 pb =  " + str(a.predict([5, 5])))

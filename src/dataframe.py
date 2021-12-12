@@ -70,7 +70,9 @@ class DataFrame:
 
 
     
-
+        print("hi")
+        print(self.values)
+        print(index_array)
             
 
 
@@ -95,5 +97,9 @@ print(df3.data_dict)
 #print(df3.data_dict)
 #print(df3.to_array())
 #print("hi")
+<<<<<<< HEAD
 df3.order_by('lastname')
 print(df3.data_dict)
+=======
+df3.order_by('firstname',True)
+>>>>>>> parent of d20dc2b (stashing)

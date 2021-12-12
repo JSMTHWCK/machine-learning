@@ -2,6 +2,7 @@ class DataFrame:
     def __init__(self,data_dict,column_order = ['Pete', 'John', 'Sarah']):
         self.data_dict =  data_dict 
         self.column_order = column_order
+        self.list = list(data_dict)
         self.values = list(data_dict.values())
 
     def to_array(self):
@@ -31,9 +32,50 @@ class DataFrame:
                 array.append(arr[y][x])
             stored_dict.append(array)
         data_dict = dict(zip(column_order,stored_dict))
-        return data_dict
+        return cls(data_dict)
+    
+    def order_by(self,col,ascending = False):
+        print(self.list)
+        print(self.values)
+        if col not in self.list:
+            print('{} is not a value'.format(str(col)))
+            return 
+        i = self.list.index(col)
+        print(i)
+        index_array = []
+        x= 0
 
-        
+        for item in range(0,len(self.values[0])):
+            index_array.append(x)
+            x = x+1
+
+        #----------------------------------> Card sort <---------------------------------#
+        for n in self.values[i]:
+            for item in range(0, len(self.values[i])):
+                if item > 0:
+                    while self.values[i][item] < self.values[i][item - 1]:
+                        self.values[i][item], self.values[i][item - 1] = self.values[i][item - 1], self.values[i][item]
+                        index_array[item], index_array[item-1] =   index_array[item-1], index_array[item]
+        for sub_index in range(0,len(self.values)):
+            index_copy = index_array.copy()
+            if sub_index == i:
+                    continue
+            else:
+                for item in range(0,len(index_copy)):
+                    index_copy[item],index_copy[index_copy.index(item)] = index_copy[index_copy.index(item)],index_copy[item]
+                    self.values[sub_index][item],self.values[sub_index][index_copy.index(item)] = self.values[sub_index][index_copy.index(item)],self.values[sub_index][item]
+
+                    
+
+
+    
+        print("hi")
+        print(self.values)
+        print(index_array)
+            
+
+
+
 data_dict = {
     'Pete': [1, 0, 1, 0],
     'John': [2, 1, 0, 2],
@@ -49,4 +91,8 @@ print(df1.to_array())
 df2 = df1.select_columns(["John", "Sarah"])
 print(df2.to_array())
 df3 = DataFrame.from_array(arr)
-print(df3)
+print(df3.data_dict)
+#print(df3.data_dict)
+#print(df3.to_array())
+#print("hi")
+df3.order_by('firstname')

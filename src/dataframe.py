@@ -64,7 +64,9 @@ class DataFrame:
                 for item in range(0,len(index_copy)):
                     index_copy[item],index_copy[index_copy.index(item)] = index_copy[index_copy.index(item)],index_copy[item]
                     self.values[sub_index][item],self.values[sub_index][index_copy.index(item)] = self.values[sub_index][index_copy.index(item)],self.values[sub_index][item]
-
+        if ascending == True:
+            for item in range(0,len(self.values)):
+                self.values[item].reverse()
                     
 
 
@@ -95,4 +97,4 @@ print(df3.data_dict)
 #print(df3.data_dict)
 #print(df3.to_array())
 #print("hi")
-df3.order_by('firstname')
+df3.order_by('firstname',True)

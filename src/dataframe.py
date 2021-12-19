@@ -2,6 +2,15 @@ class DataFrame:
     def __init__(self,data_dict,column_order = ['Pete', 'John', 'Sarah']):
         self.data_dict =  data_dict 
         self.column_order = column_order
+        self.values = list(data_dict.values())
+
+    def to_array(self):
+        final_array = [[] for row in range(0,len(self.values) + 1)]
+        for a in range(0,len(final_array)):
+            for b in range(0,len(self.column_order)):
+                final_array[a].append(self.values[b][a])
+        return final_array
+
     def select_columns(self,columns):
         dict_copy = {}
         for col in columns:
@@ -71,6 +80,7 @@ class DataFrame:
         print('hi')
         print(self.column_order)
 
+
     @classmethod
     def from_json(cls,json, column_order):
         json = {}
@@ -83,6 +93,5 @@ class DataFrame:
     
 
             
-
 
 

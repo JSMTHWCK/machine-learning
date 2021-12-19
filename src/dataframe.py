@@ -16,11 +16,22 @@ class DataFrame:
         for col in columns:
             dict_copy[col] = self.data_dict[col]
         return DataFrame(dict_copy, column_order = columns)
+        
+    def to_array(self):
+        array = [[] for i in range(len(self.data_dict[self.column_order[0]]))]
+        for values in self.column_order: 
+            for i in range(len(array)):
+                array[i].append(self.data_dict[values][i])
+        return array 
+
+
     def select_rows(self,rows):
         new_array = []
         a = self.to_array()
         for item in rows:
             new_array.append(a[item])
+
+        return DataFrame.from_array(new_array, column_order = self.column_order)
     @classmethod
     def from_array(cls,arr,column_order = ["firstname","lastname","age"]):
 
@@ -34,72 +45,53 @@ class DataFrame:
         return cls(data_dict)
     
     def order_by(self,col,ascending = False):
-        print(self.list)
-        print(self.values)
-        if col not in self.list:
+        if col not in list(self.data_dict):
             print('{} is not a value'.format(str(col)))
             return 
-        i = self.list.index(col)
-        print(i)
+        i = list(self.data_dict).index(col)
         index_array = []
         x= 0
 
-        for item in range(0,len(self.values[0])):
+        for item in range(0,len(list(self.data_dict.values())[0])):
             index_array.append(x)
             x = x+1
 
         #----------------------------------> Card sort <---------------------------------#
-        for n in self.values[i]:
-            for item in range(0, len(self.values[i])):
+        for n in list(self.data_dict.values())[i]:
+            for item in range(0, len(list(self.data_dict.values())[i])):
                 if item > 0:
-                    while self.values[i][item] < self.values[i][item - 1]:
-                        self.values[i][item], self.values[i][item - 1] = self.values[i][item - 1], self.values[i][item]
+                    while list(self.data_dict.values())[i][item] < list(self.data_dict.values())[i][item - 1]:
+                        list(self.data_dict.values())[i][item], list(self.data_dict.values())[i][item - 1] = list(self.data_dict.values())[i][item - 1], list(self.data_dict.values())[i][item]
                         index_array[item], index_array[item-1] =   index_array[item-1], index_array[item]
-        for sub_index in range(0,len(self.values)):
+        for sub_index in range(0,len(list(self.data_dict.values()))):
             index_copy = index_array.copy()
             if sub_index == i:
                     continue
             else:
                 for item in range(0,len(index_copy)):
                     index_copy[item],index_copy[index_copy.index(item)] = index_copy[index_copy.index(item)],index_copy[item]
-                    self.values[sub_index][item],self.values[sub_index][index_copy.index(item)] = self.values[sub_index][index_copy.index(item)],self.values[sub_index][item]
+                    list(self.data_dict.values())[sub_index][item],list(self.data_dict.values())[sub_index][index_copy.index(item)] = list(self.data_dict.values())[sub_index][index_copy.index(item)],list(self.data_dict.values())[sub_index][item]
         if ascending == True:
-            for item in range(0,len(self.values)):
-                self.values[item].reverse()
-                    
+            for item in range(0,len(list(self.data_dict.values()))):
+                list(self.data_dict.values())[item].reverse()
+    
+    def to_json(self): 
+        dicts = [{} for i in range(0, len(self.data_dict) + 1)]
+        print('hi')
+        print(self.column_order)
 
+
+    @classmethod
+    def from_json(cls,json, column_order):
+        json = {}
+        for item in column_order: 
+            dict[item] = []
+            for i in range(0,len(json)):
+                dict[values].append(json[i][item])
+        return cls(json, column_order = column_order)
 
     
-        print("hi")
-        print(self.values)
-        print(index_array)
+
             
 
 
-
-        
-data_dict = {
-    'Pete': [1, 0, 1, 0],
-    'John': [2, 1, 0, 2],
-    'Sarah': [3, 1, 4, 0]
-}
-
-arr = [['Kevin', 'Fray' , 5],['Charles', 'Trapp', 17],['Anna', 'Smith', 13],['Sylvia', 'Mendez', 9]]
-
-df1 = DataFrame(data_dict)
-print(df1.data_dict)
-print(df1.column_order)
-print(df1.to_array())
-df2 = df1.select_columns(["John", "Sarah"])
-print(df2.to_array())
-df3 = DataFrame.from_array(arr)
-print(df3.data_dict)
-#print(df3.data_dict)
-#print(df3.to_array())
-#print("hi")
-<<<<<<< HEAD
-df3.order_by('lastname')
-print(df3.data_dict)
-=======
-df3.order_by('firstname',True)
->>>>>>> parent of d20dc2b (stashing)

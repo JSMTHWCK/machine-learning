@@ -57,5 +57,5 @@ data = [[0,1],[1,1],[2,1]]
 data2 = [[4,0.9,0.45],[3,0.75,0.65],[2,0.5,0.2],[1,0.1,0.5]]
 
 
-a.fit(data2,True)
+a.fit(data2,False)
 print(a.coefficients)

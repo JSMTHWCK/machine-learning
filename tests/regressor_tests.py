@@ -7,7 +7,7 @@ from analysis import LinearSandwich
 from logisticRegressor import LogisticRegressor
 from matrix import *
 
-a = LinearSandwich()
+a = LogisticRegressor()
 data = [[0,1],[1,1],[2,1]]
 data2 = [[5,2],[8,11],[3,6]]
 data3 = [[7,3],[11,5],[2,6]]

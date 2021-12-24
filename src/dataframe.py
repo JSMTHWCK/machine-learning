@@ -1,28 +1,23 @@
 class DataFrame:
     def __init__(self,data_dict,column_order = ['Pete', 'John', 'Sarah']):
-        self.data_dict =  data_dict 
+        self.data_dict =  data_dict
         self.column_order = column_order
         self.values = list(data_dict.values())
 
-    def to_array(self):
-        final_array = [[] for row in range(0,len(self.values) + 1)]
-        for a in range(0,len(final_array)):
-            for b in range(0,len(self.column_order)):
-                final_array[a].append(self.values[b][a])
-        return final_array
+
 
     def select_columns(self,columns):
         dict_copy = {}
         for col in columns:
             dict_copy[col] = self.data_dict[col]
         return DataFrame(dict_copy, column_order = columns)
-        
+
     def to_array(self):
         array = [[] for i in range(len(self.data_dict[self.column_order[0]]))]
-        for values in self.column_order: 
+        for values in self.column_order:
             for i in range(len(array)):
                 array[i].append(self.data_dict[values][i])
-        return array 
+        return array
 
 
     def select_rows(self,rows):
@@ -42,12 +37,12 @@ class DataFrame:
                 array.append(arr[y][x])
             stored_dict.append(array)
         data_dict = dict(zip(column_order,stored_dict))
-        return cls(data_dict)
-    
-    def order_by(self,col,ascending = False):
+        return cls(data_dict,column_order = column_order)
+
+    def order_by(self,col,ascending = True):
         if col not in list(self.data_dict):
             print('{} is not a value'.format(str(col)))
-            return 
+            return
         i = list(self.data_dict).index(col)
         index_array = []
         x= 0
@@ -71,27 +66,27 @@ class DataFrame:
                 for item in range(0,len(index_copy)):
                     index_copy[item],index_copy[index_copy.index(item)] = index_copy[index_copy.index(item)],index_copy[item]
                     list(self.data_dict.values())[sub_index][item],list(self.data_dict.values())[sub_index][index_copy.index(item)] = list(self.data_dict.values())[sub_index][index_copy.index(item)],list(self.data_dict.values())[sub_index][item]
-        if ascending == True:
+        if ascending == False:
             for item in range(0,len(list(self.data_dict.values()))):
                 list(self.data_dict.values())[item].reverse()
-    
-    def to_json(self): 
-        dicts = [{} for i in range(0, len(self.data_dict) + 1)]
-        print('hi')
-        print(self.column_order)
+
+
+    def to_json(self):
+        dicts = [{} for i in list(self.data_dict.values())[0]]
+        for i in range(0,len(dicts)):
+            for values in self.column_order:
+                dicts[i][values] = self.data_dict[values][i]
+
+        return dicts
 
 
     @classmethod
-    def from_json(cls,json, column_order):
-        json = {}
-        for item in column_order: 
-            dict[item] = []
-            for i in range(0,len(json)):
-                dict[values].append(json[i][item])
-        return cls(json, column_order = column_order)
+    def from_json(cls, json, column_order):
 
-    
-
-            
-
-
+        dict = {}
+        for a in range(0, len(column_order)):
+            column = column_order[a]
+            dict[column] = []
+            for i in range(0, len(json)):
+                dict[column].append(json[i][column])
+        return cls(dict, column_order=column_order)

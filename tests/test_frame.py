@@ -20,7 +20,7 @@ if df1.column_order != ['John', "Sarah", "Pete"]:
     print("column order failed ")
     print("wanted [John,Sarah,Pete]")
     print('got ',df1.column_order)
-    
+
 if df1.to_array() != [[2, 3, 1], [1, 1, 0], [0, 4, 1], [2, 0, 0]]:
     print("to_array doesn't work")
     print("wanted : [[2, 3, 1], [1, 1, 0], [0, 4, 1], [2, 0, 0]]")
@@ -43,15 +43,24 @@ if df3.to_array() != [[1, 1, 0],[2, 0, 0]]:
 
 
 df4 = DataFrame.from_array(arr, column_order=['firstname', 'lastname', 'age'])
+print('hi')
 df5 = DataFrame.from_json(df4.to_json(), ['firstname', 'lastname', 'age'])
 if df4.to_array() != df5.to_array():
     print("from json or from array not working with to array")
-if df4.data_dict == df5.data_dict:
+    print('df4 is ',df4.data_dict)
+    print('df5 is ',df5.data_dict)
+
+    
+if df4.data_dict != df5.data_dict:
     print('from json or to json not working with data dict ')
+    print('df4 is ',df4.data_dict)
+    print('df5 is ',df5.data_dict)
 
 
 
-df6 = df5.order_by('lastname', ascending=False)
-assert df6.to_array() == [['Charles', 'Trapp', 17], ['Anna', 'Smith', 13], ['Sylvia', 'Mendez', 9], ['Kevin', 'Fray', 5]]
-
-assert df6.order_by('age', ascending=True).to_json() == [{'firstname': 'Kevin', 'lastname': 'Fray', 'age': 5}, {'firstname': 'Sylvia', 'lastname': 'Mendez', 'age': 9}, {'firstname': 'Anna', 'lastname': 'Smith', 'age': 13}, {'firstname': 'Charles', 'lastname': 'Trapp', 'age': 17}]
+df6 = df4
+df6.order_by('lastname', ascending=False)
+if df6.to_array() != [['Charles', 'Trapp', 17], ['Anna', 'Smith', 13], ['Sylvia', 'Mendez', 9], ['Kevin', 'Fray', 5]]:
+    print('order by failed')
+    print("wanted [['Charles', 'Trapp', 17], ['Anna', 'Smith', 13], ['Sylvia', 'Mendez', 9], ['Kevin', 'Fray', 5]")
+    print("got ",df6.to_array())

@@ -260,16 +260,7 @@ class Matrix:
 		return matrix_copy
 
 	def __add__(self, elements2):
-			if self.numrows != elements2.numrows or self.numcols !=elements2.numcols:
-				print("matricies are of unequal dimensions")
-				return 
-			final_array = []
-			for i in range(0,self.numrows):
-				new_array = []
-				for a in range(0,self.numcols):
-					new_array.append(self.elements[i][a] + elements2.elements[i][a])
-				final_array.append(new_array)
-			return Matrix(final_array)
+		return self.add(elements2)
 
 	def __sub__(self,elements2):
 		if self.numrows != elements2.numrows or self.numcols !=elements2.numcols:
@@ -282,14 +273,9 @@ class Matrix:
 				new_array.append(self.elements[i][a] - elements2.elements[i][a])
 			final_array.append(new_array)
 		return Matrix(final_array)
+
 	def __mul__(self,scalar):
-		final_array = []
-		for row in self.elements:
-			new_array = []
-			for a in range(0,self.numcols):
-				new_array.append(scalar * row[a])
-			final_array.append(new_array)
-		return Matrix(final_array)
+		return self.scalar(scalar)
 	def __rmul__(self,scalar):
 		final_array = []
 		for row in self.elements:
@@ -312,6 +298,7 @@ class Matrix:
 				dot_prod = self.dot_product(row,col)
 				new_array.append(dot_prod)
 			final_array.append(new_array)
+
 	def __pow__(self,scalar):
 		final_array = []
 		for row in self.elements:
@@ -322,10 +309,7 @@ class Matrix:
 		return Matrix(final_array)
 		return Matrix(final_array)	
 	def __eq__(self,elements2):
-		if self.elements == elements2.elements:
-			return True
-		else:
-			return False
+		return self.elements == elements2.elements
 
 def roundarray(input,accuracy):
 	for a in range(0,len(input)):

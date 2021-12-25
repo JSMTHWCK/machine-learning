@@ -285,29 +285,8 @@ class Matrix:
 			final_array.append(new_array)
 		return Matrix(final_array)
 	def __matmult__(self,matrix2):
-		if self.numcols != matrix2.numrows:
-			print("matricies are incompatable")
-
-			return
-		final_array = []
-		for rowindex in range(0,self.numrows):
-			new_array = []
-			for colindex in range(0,matrix2.numcols):
-				row = self.elements[rowindex]
-				col = matrix2.col_to_row(colindex)
-				dot_prod = self.dot_product(row,col)
-				new_array.append(dot_prod)
-			final_array.append(new_array)
-
-	def __pow__(self,scalar):
-		final_array = []
-		for row in self.elements:
-			new_array = []
-			for a in range(0,self.numcols):
-				new_array.append(row[a] * scalar)
-			final_array.append(new_array)
-		return Matrix(final_array)
-		return Matrix(final_array)	
+		return self.matrix_multiplication(matrix2)
+		
 	def __eq__(self,elements2):
 		return self.elements == elements2.elements
 

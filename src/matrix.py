@@ -284,9 +284,16 @@ class Matrix:
 				new_array.append(row[a] * scalar)
 			final_array.append(new_array)
 		return Matrix(final_array)
-	def __matmult__(self,matrix2):
+	def __matmul__(self,matrix2):
 		return self.matrix_multiplication(matrix2)
-		
+	def __pow__(self,scalar):
+		final_array = []
+		for row in self.elements:
+			new_array = []
+			for a in range(0,self.numcols):
+				new_array.append(row[a] ** scalar)
+			final_array.append(new_array)
+		return Matrix(final_array)	
 	def __eq__(self,elements2):
 		return self.elements == elements2.elements
 

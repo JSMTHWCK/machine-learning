@@ -4,11 +4,15 @@ import math
 
 class LogisticRegressor():
 
-	def fit(self, data,interaction_terms = False,min=0,max=1):
+	def fit(self, data,interaction_terms = False,min=1,max=2):
 		self.min = min
 		self.max = max
+		print(self.min)
+		print(self.max)
+		x = [[self.max - point[-1]] for point in data]
+		print(x)
 		#right side
-		right = [[math.log((max - point[-1])/(point[-1]-min))] for point in data]
+		right = [[math.log((self.max - point[-1])/(point[-1]-self.min))] for point in data]
 		right = Matrix(right)
 		#left side
 		left = [point[:-1] for point in data]
@@ -54,9 +58,3 @@ class LogisticRegressor():
 		return self.min + (self.max - self.min)/(1 + math.e ** (total))
 
 
-a = LogisticRegressor()
-data = [[0,1],[1,1],[2,1]]
-data2 = [[9,0,0.1],[1,0,0.2],[2,0,0.4],[4,0,0.8],[0,8,0.6]]
-
-a.fit(data2,False)
-print(a.coefficients)

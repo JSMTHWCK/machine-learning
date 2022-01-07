@@ -17,3 +17,5 @@ if roundarray(rss_one,4) != [1.2857,0.8571]:
     print('rss failed')
     print('wanted [1.2857,0.8571]')
     print('got ',rss_one)
+
+print('hi')

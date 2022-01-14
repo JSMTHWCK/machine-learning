@@ -1,0 +1,1 @@
+print(['A' for item in range(0,4)])

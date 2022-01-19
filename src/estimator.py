@@ -3,7 +3,7 @@ class EulerEstimate:
         self.derivative = derivative
 
     def calc_derivative_at_point(self,point):
-        return derivative(point)
+        return self.derivative(point)
 
     def calc_estimated_points(self,point,step_size = 0.5, num_steps = 4,full_graph = False):
         #https://mathacademy.com/topics/eulers-method:-calculating-one-step-602#step-13
@@ -19,15 +19,15 @@ class EulerEstimate:
             y.append(y[i-1] + deltay[i-1])
             yprime.append(self.calc_derivative_at_point([x[i]]))
             deltay.append(step_size * yprime[i])
-        print(x)
-        print(y)
-        print('')
-        print(yprime)
-        print(deltay)
+        #print(x)
+        #print(y)
+        #print('')
+        #print(yprime)
+        #print(deltay)
         for item in range(len(x)):
             fin.append(tuple([x[item],y[item]]))
-        print('')
-        print(fin)
+        #print('')
+        #print(fin)
         return fin
         
 
@@ -35,10 +35,3 @@ class EulerEstimate:
 
 
 
-def derivative(points):
-    return points[0] + 1
-
-
-
-l = EulerEstimate(derivative)
-l.calc_estimated_points((1,4))

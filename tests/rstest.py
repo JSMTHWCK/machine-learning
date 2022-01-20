@@ -1,6 +1,6 @@
 import sys
 sys.path.append('src')
-
+import math
 from rss import *
 from matrix import *
 print('started')
@@ -20,7 +20,7 @@ def a_one_grad(item):
 # <-------------------- Linear End -------------------->
 
 # <-------------------- Non-Linear Start -------------------->
-
+'''
 def a_one_grad_pb(item): 
     return ((196 * item[0]) + (72 * item[1]) + (28 * item[2]) -26)
 
@@ -34,6 +34,28 @@ if roundarray(rssp,4) != [0.499,-1.6965,1.7982]:
     print('rssp failed')
     print('wanted [0.499,-1.6965,1.792]')
     print('got ',roundarray(rssp,4))
+'''
 # <-------------------- Non-Linear End -------------------->
 
+#<-------------------- LOGISTIC START --------------->
+
+def a_logistic(l):
+    a = l[0]
+    b = l[1]
+    return  (math.e**(a + b)*(math.e**(a+b) -1))/(math.e**(a+b))**2+ (8 * math.e **(8*a + 2 * b))/(math.e **(4 * a + b) +1) ** 3
+
+
+
+def b_logistic(l):
+    a = l[0]
+    b = l[0]
+    return -(2*math.e ** a)/(math.e**b + 1) **3   +   (math.e**(a+b)*(math.e**(a + b) - 1))/((math.e **(a+b)+1)**3) + (2 * math.e **(8 * a + 2 * b))/(math.e ** (4 * a + b) + 1)**3
+
+
+print(fit([-1, 0],[a_logistic, b_logistic],eqlog, 0.01,100000))
+#<-------------------- LOGISTIC ENND --------------->
+
+
+
 print('finished')
+

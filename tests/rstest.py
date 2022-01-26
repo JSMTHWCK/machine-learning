@@ -20,7 +20,7 @@ def a_one_grad(item):
 # <-------------------- Linear End -------------------->
 
 # <-------------------- Non-Linear Start -------------------->
-'''
+
 def a_one_grad_pb(item): 
     return ((196 * item[0]) + (72 * item[1]) + (28 * item[2]) -26)
 
@@ -29,16 +29,17 @@ def b_one_grad_pb(item):
 
 def c_one_grad_pb(item): 
     return ((28 * item[0]) + (12 * item[1]) + (8 * item[2]) - 8)
-rssp = fit([1,0,0],[a_one_grad_pb, b_one_grad_pb, c_one_grad_pb],eq, 0.0001, 10)
-if roundarray(rssp,4) != [0.499,-1.6965,1.7982]:
+rssp = bonus([1,0,0],[a_one_grad_pb, b_one_grad_pb, c_one_grad_pb], 0.00879, 1000000)
+if roundarray(rssp,4) != [0.4997,-1.6989,1.7994]:
+    print(eq(roundarray(rssp,4)))
     print('rssp failed')
     print('wanted [0.499,-1.6965,1.792]')
     print('got ',roundarray(rssp,4))
-'''
+
 # <-------------------- Non-Linear End -------------------->
 
 #<-------------------- LOGISTIC START --------------->
-
+'''
 def a_logistic(l):
     a = l[0]
     b = l[1]
@@ -53,6 +54,7 @@ def b_logistic(l):
 
 
 print(fit([-1, 0],[a_logistic, b_logistic],eqlog, 0.01,100000))
+'''
 #<-------------------- LOGISTIC ENND --------------->
 
 

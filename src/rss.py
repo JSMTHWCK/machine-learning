@@ -41,4 +41,3 @@ def bonus(data_points, functions,step = 0.0077,iteration = 1000):
             print('only took {} attempts'.format(i))
             return data_points_n
     return data_points
-

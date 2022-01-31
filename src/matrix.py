@@ -150,7 +150,6 @@ class Matrix:
 				new_array.append(self.elements[i][a] + elements2.elements[i][a])
 			final_array.append(new_array)
 		return Matrix(final_array)
-
 	#function
 	def matrix_multiplication(self,matrix2):
 		if self.numcols != matrix2.numrows:

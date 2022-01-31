@@ -29,6 +29,18 @@ initial_clusters = {
     2: [1,4,7,10,13,16],
     3: [2,5,8,11,14,17]
     } 
+fin = {
+    1: [0, 2, 5, 7, 9, 12, 15, 18],
+    2: [3, 6, 8, 10, 14, 16],
+    3: [1, 4, 11, 13, 17]
+
+}
 
 a = KMeans(initial_clusters,data)
+l = 0
 a.run()
+
+if a.cluster != fin:
+    print('kmeans failed')
+    print('wanted ',fin)
+    print('got ', a.cluster)

@@ -2,8 +2,8 @@ from kmc import *
 import matplotlib
 import matplotlib.pyplot as plt
 
-x_axis = [1,2,3,4,5,6,7,8,9,10]
-y_axis = [] #will be the euclid values
+x_axis = [1,2,3,4]
+y_axis = [1,2,3,4] #will be the euclid values
 
 data = [[0.14, 0.14, 0.28, 0.44],
         [0.22, 0.1, 0.45, 0.33],
@@ -31,13 +31,13 @@ for a in range(1,len(x_axis)+1):
         clusters[i] = []
     for j in range(0,len(data)):
         clusters[(j%len(clusters))+1].append(j)
-    print(clusters)
     #clustering works now
-    #a = KMeans(clusters,data)
-    #a.run()
-    #print(a.cluster)
+    km = KMeans(clusters,data)
+    km.run()
+
+    
 
 
 
-#plt.plot(x_axis,output)
-#plt.savefig('test.png')
+plt.plot(x_axis,y_axis)
+plt.savefig('test.png')

@@ -23,7 +23,6 @@ class KMeans:
         return average
 
     def eucledian(self,midpoint,index,cluster_num):
-        euclid = []
         euclid_average = 0
 
         for b in range(len(self.data[index])):

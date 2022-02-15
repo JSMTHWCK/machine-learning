@@ -19,15 +19,9 @@ class EulerEstimate:
             y.append(y[i-1] + deltay[i-1])
             yprime.append(self.calc_derivative_at_point([x[i]]))
             deltay.append(step_size * yprime[i])
-        #print(x)
-        #print(y)
-        #print('')
-        #print(yprime)
-        #print(deltay)
         for item in range(len(x)):
             fin.append(tuple([x[item],y[item]]))
-        #print('')
-        #print(fin)
+
         return fin
         
 

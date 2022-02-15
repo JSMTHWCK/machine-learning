@@ -45,3 +45,4 @@ derivatives = {
     
 l = gen_estimator(derivatives)
 print(l.calc_derivatives_at_point(initial_point))
+print(l.calc_estimated_points(initial_point , step_size =2,  num_steps =3))

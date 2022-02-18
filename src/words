@@ -1,0 +1,17 @@
+seperate dict into keys and values
+for number of steps:
+	state += step
+	for each item in keys:
+		add delta function[key]  to function[keys]
+	append
+	for each item in keys:
+		overwrite it's derivative[key]
+	append
+	for each item in keys:
+		overwrite step * **latest y**
+	append
+		
+
+
+zip keys and values
+tuple state and zipped 

@@ -5,6 +5,7 @@ class EulerEstimate:
     def calc_derivative_at_point(self,point):
         return self.derivative(point)
 
+
     def calc_estimated_points(self,point,step_size = 0.5, num_steps = 4,full_graph = False):
         #https://mathacademy.com/topics/eulers-method:-calculating-one-step-602#step-13
         self.point = list(point)
@@ -15,6 +16,10 @@ class EulerEstimate:
         deltay = [step_size * yprime[0]]
         #pre append x
         for i in range(1,num_steps+1):
+            print('x is ',x)
+            print('y is ',y)
+            print('yprime is ',yprime)
+            print('deltay is ',deltay)
             x.append(x[0] + step_size*i)
             y.append(y[i-1] + deltay[i-1])
             yprime.append(self.calc_derivative_at_point([x[i]]))

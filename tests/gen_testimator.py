@@ -3,7 +3,7 @@ import math
 sys.path.append('src')
 
 from estimator import *
-from gen_estimator_take_2 import *
+from gen_estimator import *
 
 '''<--------------------Part A) start ----------------------->'''
 def derivative(points):

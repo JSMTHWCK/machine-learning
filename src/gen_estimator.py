@@ -30,7 +30,6 @@ class gen_estimator:
         keys = fun.keys()
         for i in range(1,num_steps+1):
             new_point = [state + step_size * i]
-            print(fin[-1][-1])
             new_point.append(add_dict(fin[-1][1],mult_dict(self.calc_derivatives_at_point(fin[-1]),step_size)))
             fin.append(tuple(new_point))
         return fin

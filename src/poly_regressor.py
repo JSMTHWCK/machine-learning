@@ -17,11 +17,16 @@ class PolynomialRegressor:
         y_matrix_class = eq_transpose.matrix_multiplication(y_matrix_class)
         eq_matrix_class = eq_transpose.matrix_multiplication(eq_matrix_class)
         coefficients = eq_matrix_class.inverse().matrix_multiplication(y_matrix_class)
-        self.coefficients = coefficients.roundmatrix(3).elements
+        self.coefficients = coefficients.elements
         
-        
-        
+    def predict(self, x):
+        y = 0
+        for i in range(self.n):
+            y += self.coefficients[i][0] * (x ** i)
+        return y
 
 l = PolynomialRegressor()
-l.fit([(1,2),(3,4),(5,6)],3)
+data = [(1, 3), (2, 10), (3, 40), (4, 25), (5, 90), (6, 100), (7, 180), (8, 140), (9, 250), (10, 260)]
+l.fit(data,8)
 print(l.coefficients)
+print(l.predict(3))

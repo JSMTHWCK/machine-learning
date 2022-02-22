@@ -247,9 +247,9 @@ class Matrix:
 		return final
 
 	def inverse(self):
-		if self.numcols != self.numrows or self.det() == 0:
-			print("unable to compute ",self.elements)
-			return
+		assert self.numcols == self.numrows, 'non_square_matrix'
+		assert self.determinant() != 0, 'det is zero'
+
 		matrix_copy = self.copy()
 		identity = self.identitymatrix()
 		matrix_copy = matrix_copy.augment(identity)
@@ -262,9 +262,8 @@ class Matrix:
 		return self.add(elements2)
 
 	def __sub__(self,elements2):
-		if self.numrows != elements2.numrows or self.numcols !=elements2.numcols:
-			print("matricies are of unequal dimensions")
-			return 
+		assert self.numrows == elements2.numrows, "matricies are of unequal dimensions"
+		assert self.numcols == elements2.numcols, "matricies are of unequal dimensions"
 		final_array = []
 		for i in range(0,self.numrows):
 			new_array = []

@@ -13,4 +13,3 @@ def c_one_grad_pb(item):
 #rssp = bonus([1,0,0],[a_one_grad_pb, b_one_grad_pb, c_one_grad_pb], 0.0066, 1000000)
 #rrsp = fit([1,0,0],[a_one_grad_pb, b_one_grad_pb, c_one_grad_pb], 0.0001, 1000000)
 
-#print('r is ',rssp)

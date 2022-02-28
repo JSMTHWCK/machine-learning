@@ -16,7 +16,6 @@ def add_dict(dict1, dict2):
 class gen_estimator:
     def __init__(self,derivatives):
         self.derivatives = derivatives
-        self.dimensions = [key for key in derivatives]
     def calc_derivatives_at_point(self,initial_point):
         answer = {}
         for l in self.derivatives.keys():

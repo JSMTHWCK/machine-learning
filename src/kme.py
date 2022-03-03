@@ -2,9 +2,8 @@ from kmc import *
 import matplotlib
 import matplotlib.pyplot as plt
 
-x_axis = [1,2,3,4]
-y_axis = [1,2,3,4] #will be the euclid values
-
+x_axis = [x for x in range(1,18)]
+y_axis = [0 for a in x_axis]
 data = [[0.14, 0.14, 0.28, 0.44],
         [0.22, 0.1, 0.45, 0.33],
         [0.1, 0.19, 0.25, 0.4],
@@ -25,6 +24,13 @@ data = [[0.14, 0.14, 0.28, 0.44],
         [0.22, 0.07, 0.4, 0.38],
         [0.2, 0.18, 0.3, 0.4]]
 
+def rss(a,b):
+    assert len(a) == len(b), 'unequal length'
+    tot = 0
+    for i in range(len(a)):
+        tot += (a[i] - b[i])**2
+    return tot ** 0.5
+
 for a in range(1,len(x_axis)+1):
     clusters = {}
     for i in range(1,a+1):
@@ -35,9 +41,12 @@ for a in range(1,len(x_axis)+1):
     km = KMeans(clusters,data)
     km.run()
 
-    
-
-
-
+    for intry in list(km.cluster.keys()):
+        #returns 1,2,3 ... 
+        for i in km.cluster[intry]:
+            y_axis[a-1] += rss(data[i],km.midpoint[intry-1])
+  
 plt.plot(x_axis,y_axis)
-plt.savefig('test.png')
+
+
+plt.savefig('tests.png')

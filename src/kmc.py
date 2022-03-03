@@ -23,13 +23,13 @@ class KMeans:
         return average
 
     def eucledian(self,midpoint,index,cluster_num):
-        euclid_average = 0
+        eucled_average = 0
 
         for b in range(len(self.data[index])):
-            euclid_average += (self.data[index][b] - midpoint[cluster_num][b]) **2
+            eucled_average += (self.data[index][b] - midpoint[cluster_num][b]) **2
 
-        euclid_average = math.sqrt(euclid_average)
-        return euclid_average
+        eucled_average = math.sqrt(eucled_average)
+        return eucled_average
         #just finished equlid, need to figure out which is best
 
     def run(self):
@@ -41,27 +41,30 @@ class KMeans:
         datapoint_indecies = list(self.cluster_copy.values())
         
         for cluster_index in range(len(datapoint_indecies)):
-            midpoint.append(self.findmidpoint(cluster_index))
+            if len(datapoint_indecies[cluster_index]) == 0:
+                midpoint.append(self.midpoint[cluster_index])
+            else:
+                midpoint.append(self.findmidpoint(cluster_index))
 
-        #finding midpoints with euclidean algorithm
+        #finding midpoints with eucledean algorithm
 
         for i in range(len(midpoint)):
             clusters[i+1] = []
 
         for i in range(len(self.data)):
-            euclid = []
+            eucled = []
             for cluster_num in range(len(midpoint)):
-                euclid.append(self.eucledian(midpoint,i,cluster_num))
+                eucled.append(self.eucledian(midpoint,i,cluster_num))
             
-            min_val = min(euclid)
-            clusters[euclid.index(min_val) + 1].append(i)
+            min_val = min(eucled)
+            clusters[eucled.index(min_val) + 1].append(i)
+        self.midpoint = midpoint
 
         if clusters != self.cluster_copy:
             self.cluster_copy = clusters
             self.run()
         else:
             self.cluster = clusters
-            for item in range(len(midpoint)):
-                midpoint[item] = matrix.roundarray(midpoint[item],3)
-            self.midpoint = midpoint
+            self.eucled = eucled
+
 

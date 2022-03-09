@@ -34,3 +34,5 @@ if  knn.classify([0.10, 0.15, 0.30, 0.45]) != "Shortbread":
     print('wanted shortbread')
     print('got ',knn.classify([0.10, 0.15, 0.30, 0.45]) )
 print('2')
+
+print(knn.classify([0.10,0.15,0.30,0.45],True))

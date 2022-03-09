@@ -18,7 +18,7 @@ if graph2.get_parents(3) != [2]:
     print("get_parents failed at ",graph.edges)
 if graph2.get_children(3) != [6,5]:
     print("get_children failed ",graph.edges)
-
+print('a is ',grapha.get_children(8))
 if grapha.bfs() != [4,0,8,6,2,3,1,9,5,7]:
     print("bfs failed on ",grapha.edges)
 if grapha.dfs() != [4,6,3,5,7,9,1,2,8,0]:

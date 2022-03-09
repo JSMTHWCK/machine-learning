@@ -1,3 +1,7 @@
 
 tests/kmc_test.py
 .vscode/launch.json
+*.pyc
+*.pyc
+src/__pycache__/graph.cpython-39.pyc
+src/__pycache__/inn.cpython-39.pyc

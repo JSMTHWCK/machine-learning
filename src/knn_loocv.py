@@ -38,7 +38,7 @@ file = open('knn_text.txt',"w")
 
 #for each k
 accuracy_per_k = []
-for k in range(1,15):
+for k in range(1,19):
     accuracy_per_out = []
     #for each leave one out
     for out in range(0,len(x)):

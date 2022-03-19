@@ -1,25 +1,20 @@
 '''Trashcan for graph.py'''
-import queue
 class Node:
 	def __init__(self,id):
 		self.id = id
 		self.get_distance = 0
-	def adddistance(self):
-		self.get_distance += 1
-	
+
 class Graph:
 	def __init__(self,edges):
 		self.edges = edges
 		self.parents = [edge[0]  for edge in edges]
 		self.children = [edge[1] for edge in edges]
-
 	def nodesbyid(self):
 		nodesid = {}
 		for item in self.edges:
 			for point in item:
 				nodesid[point] = Node(point)
 		self.nodesid = nodesid
-					
 
 	def get_children(self,value):
 		empty_array = []
@@ -50,6 +45,7 @@ class Graph:
 		return order
 
 	def dfs(self):
+		
 		queue = [self.parents[0]]
 		visited = {}
 		order = []
@@ -65,20 +61,16 @@ class Graph:
 
 		return order
 
-	def calc_distance(self,start,end):
-		self.nodesbyid()
+	def calc_distance(self,start_point,end_point):
 		queue = [self.parents[0]]
 		visited = {}
-		order = []
-		if len(visited) == len(self.nodes):
-			return False
-		if order[-1] == end:
-			return order
-		if len(queue) == 0:
-			pass
-
-
+		final = []
+		while final[-1] != end_point:
+			if len(queue) == 0:
+				for item in list(self.nodesid.keys()):
+					if self.nodesid[item] == self.nodesid[final[-1]].get_distance - 1 & self.nodesid[item] not in visited:
+						pass
+						
 graph = Graph([[2,8],[9,3],[1,5],[9,6],[9,6],[6,9],[4,5],[10,6],[3,10],[8,7],[8,5],[6,2],[8,10],[6,1],[6,4]])
 graph2 = Graph([[3,4],[4,5],[4,6],[4,7],[3,1],[1,2],[2,3],[8,5],[8,6],[9,3],[9,4]])
 
-print(graph2.dfs())

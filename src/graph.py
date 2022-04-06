@@ -1,6 +1,3 @@
-from audioop import reverse
-
-
 class Node:
 	def __init__(self,id):
 		self.id = id
@@ -99,24 +96,18 @@ class Graph:
 						reverse_order.append(item)
 					x = 1
 		return reverse_order[::-1]
-		
+	
+class Weighted_Graphs:
+	def __init__(self,weights):
+		self.weights = weights
+		self.edges = [edge for edge in weights]
+		self.parents = [edge[0] for edge in self.edges]
+		self.children = [edge[1] for edge in self.edges]
+		self.nodes_by_id = {}
 
-graph = Graph([[2,8],[9,3],[1,5],[9,6],[9,6],[6,9],[4,5],[10,6],[3,10],[8,7],[8,5],[6,2],[8,10],[6,1],[6,4]])
-graph2 = Graph([[3,4],[4,5],[4,6],[4,7],[3,1],[1,2],[2,3],[8,5],[8,6],[9,3],[9,4]])
-graph3 = Graph([[0, 1], [1, 2], [1, 4], [4, 5], [4, 3], [3, 1], [3, 6]])
-print(graph3.bfs())
-graph3.set_distance_and_previous(2)
-'''
-for item in graph3.nodes_by_id:
-	print(graph3.nodes_by_id[item].id)
-	print(graph3.nodes_by_id[item].distance)
-	print('')
-print(graph3.nodes_by_id)
-print(graph3.calc_distance(0,3))
-print(graph3.calc_distance(3,5))
-print(graph3.calc_distance(0,5))
-print(graph3.calc_distance(4,1))
-print(graph3.calc_distance(2,4))
-print(graph3.calc_shortest_path(0,3))
-print(graph3.calc_)
-'''
+	def set_distance_and_previous(self,start_index):
+		self.nodes_by_id = {}
+		queue = [start_index]
+		visited = {}
+		order = []
+

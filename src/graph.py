@@ -16,6 +16,7 @@ class Graph:
 			if self.parents[i] == value:
 				empty_array.append(self.children[i])
 		return empty_array
+		
 	def get_parents(self,value):
 		empty_array = []
 		for i in range(0,len(self.children)):
@@ -60,13 +61,11 @@ class Graph:
 		self.nodes_by_id = {}
 		queue = [start_index]
 		visited = {}
-		order = []
 		self.nodes_by_id[str(queue[0])] = Node(queue[0])
 		while len(queue) != 0:
 			item = queue[0]
 			if str(item) not in visited:
 				visited[str(item)] = True
-				order.append(item)
 				for children in self.get_children(queue[0]):
 					queue.append(children)
 					if str(children) not in visited:
@@ -97,17 +96,3 @@ class Graph:
 					x = 1
 		return reverse_order[::-1]
 	
-class Weighted_Graphs:
-	def __init__(self,weights):
-		self.weights = weights
-		self.edges = [edge for edge in weights]
-		self.parents = [edge[0] for edge in self.edges]
-		self.children = [edge[1] for edge in self.edges]
-		self.nodes_by_id = {}
-
-	def set_distance_and_previous(self,start_index):
-		self.nodes_by_id = {}
-		queue = [start_index]
-		visited = {}
-		order = []
-

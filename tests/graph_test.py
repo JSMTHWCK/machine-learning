@@ -90,7 +90,6 @@ if graph3.calc_shortest_path(2,4) != False:
     print('want false')
     print('got ',graph3.calc_shortest_path(2,4))
     assert graph3.calc_shortest_path(2,4) == False
-print('end')
 '''<------------------ set 25 ------------------>'''
 #--------------------------------------------------
 from graph_weight import *
@@ -108,8 +107,30 @@ values = {
 }
 
 a = WeightedGraph(values)
-print('hi')
+dist_list = [a.calc_distance(8,i) for i in range(9)]
+if dist_list != [4, 7, 12, 6, 7, 13, 21, 11, 0]:
+    print('calc_distance failed')
+    print('wanted ', [4,7,12,6,7,13,21,11,0])
+    print('got ', dist_list)
+    assert dist_list == [4,7,12,6,7,13,21,11,0]
+test_1 = a.calc_shortest_path(8,4)
+if test_1 != [8, 0, 3, 4]:
+    print('calc shortest path failed')
+    print('wanted ', [8, 0, 3, 4])
+    print('got ', test_1)
+    assert test_1 == [8, 0, 1,7]
+test_2 = a.calc_shortest_path(8,7)
+if test_2 != [8, 0, 1,7]:
+    print('calc shortest path failed')
+    print('wanted ', [8, 0, 1,7])
+    print('got ', test_1)
+    assert test_1 == [8, 0, 1,7]
+test_3 = a.calc_shortest_path(8,6)
+if test_3 != [8, 0, 3, 2, 5, 6]:
+    print('calc shortest path failed')
+    print('wanted ', [8, 0, 3, 2, 5, 6])
+    print('got ', test_3)
+    assert test_1 == [8, 0, 3, 2, 5, 6]
 
-for i in range(0,9):
-    print(i)
-    a.calc_shortest_path(8,i)
+
+print('end')

@@ -1,4 +1,5 @@
 import math
+from re import I
 class Node:
     def __init__(self,id):
         self.id = id
@@ -19,7 +20,12 @@ class WeightedGraph:
         for i in self.children:
             if str(i) not in self.nodes_by_id:
                 self.nodes_by_id[str(i)] = Node(i)
-
+    def reset_nodes_by_id(self):
+        for i in self.parents:
+            self.nodes_by_id[str(i)] = Node(i)
+        for i in self.children:
+            if str(i) not in self.nodes_by_id:
+                self.nodes_by_id[str(i)] = Node(i)
     def get_children(self,value):
         empty_array = []
         for i in range(0,len(self.parents)):
@@ -49,35 +55,34 @@ class WeightedGraph:
                 unique.append(i)
         return unique
     def calc_distance(self,start,end):
-        return len(self.calc_shortest_path(start,end))
-    
-    def calc_shortest_path(self,start,end):
-        priority = []
-        self.nodes_by_id[str(start)].distance = 0
-        a = 0
-        while end not in priority:
-            if len(priority) == 0:
-                i = 1
-                closest = start
-            else:
-                closest = priority[0]
-            for child in self.get_children(closest):
-                child_node = self.nodes_by_id[str(child)]
-                child_node.shortest_parent = closest
-                new_dist = int(self.nodes_by_id[str(child_node.shortest_parent)].distance) + int(self.weights[(child_node.shortest_parent,child_node.id)])
-                if child_node.distance != new_dist:
-                    print('h')
-                    priority.append(child)
-                if child_node.distance > new_dist:
-                    child_node.distance = new_dist
-            if i == 0:
-                priority.pop(0)
-            i = 0
-            priority = self.sort_by_distance(priority)
-            priority = self.remove_dupes(priority)
-            while a < 10:
-                print(priority)
-                a += 1
-        print(self.nodes_by_id[str(end)].distance)
-        print('')
+        a = self.calc_shortest_path(start,end)
+        return self.nodes_by_id[str(a[-1])].distance
 
+    def calc_shortest_path(self,start,end):
+        self.reset_nodes_by_id()
+        priority = [start]
+        visited = {start:True}
+        self.nodes_by_id[str(start)].distance = 0
+        while priority[0] != end: #while you haven't reached the end point
+            for child in self.get_children(priority[0]):
+                chld_nd = self.nodes_by_id[str(child)]
+                if chld_nd.shortest_parent == None:
+                    chld_nd.shortest_parent = priority[0]
+                priority.append(child)
+                #print(priority)
+                poss_dist = self.weights[(priority[0],child)] + self.nodes_by_id[str(priority[0])].distance
+                if poss_dist < chld_nd.distance:
+                    chld_nd.shortest_parent = priority[0]
+                    chld_nd.distance = poss_dist
+            visited[priority[0]] = True
+            for i in visited:
+                if i in priority:
+                    priority.remove(i)
+            self.sort_by_distance(priority)
+        order = [end]
+
+        while start not in order:
+            order.append(self.nodes_by_id[str(order[-1])].shortest_parent)
+        order.reverse()
+        return order
+                

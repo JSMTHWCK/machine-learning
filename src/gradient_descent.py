@@ -12,3 +12,4 @@ def multivariable_minimize(functions,initial_points,step = 0.001,iteration=1000)
     return initial_points
 def xsquared(x):
     return 2 * x
+

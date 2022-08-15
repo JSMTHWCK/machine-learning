@@ -12,6 +12,7 @@ def xsquared(x):
 def x_test(x):
     return 2 * x + 9 * (x ** 2) + 4 * (x ** 3) + 3
 
+
 def fpx(x):
     return 2 * x
 def fpy(y):

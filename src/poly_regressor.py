@@ -27,6 +27,7 @@ class PolynomialRegressor:
 
 l = PolynomialRegressor()
 data = [(1, 3), (2, 10), (3, 40), (4, 25), (5, 90), (6, 100), (7, 180), (8, 140), (9, 250), (10, 260)]
-l.fit(data,8)
+data2 = [(1,2),(2,4),(3,8)]
+l.fit(data2,2)
 print(l.coefficients)
 print(l.predict(3))
